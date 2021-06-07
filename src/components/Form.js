@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   addTodo,
+  createTodo,
   clearForm,
   updateTitle,
   updateText,
@@ -13,7 +14,8 @@ export class Form extends Component {
   handleTextChange = event => this.props.updateText(event.target.value);
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addTodo(this.props.todoItem);
+    this.props.createTodo(this.props.todoItem);
+    this.props.addTodo();
     this.props.clearForm()
   };
 
@@ -42,13 +44,14 @@ export class Form extends Component {
 
 const mapStateToProps = store => {
   return {
-    todoItem: store.todos.todoItem,
+    todoItem: store.todoState.todoItem,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     addTodo: bindActionCreators(addTodo, dispatch),
+    createTodo: bindActionCreators(createTodo, dispatch),
     clearForm: bindActionCreators(clearForm, dispatch),
     updateTitle: bindActionCreators(updateTitle, dispatch),
     updateText: bindActionCreators(updateText, dispatch),

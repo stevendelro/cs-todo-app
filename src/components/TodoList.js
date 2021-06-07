@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 function TodoList(props) {
   console.log(`TodoList props`, props)
-  if (props.todos) return 'Add a todo';
+  if (props.todoState.todos.length === 0) return 'Add a todo';
 
   return (
     <ul>
-      {props.todos.map(todo => (
+      {props.todoState.todos.map(todo => (
         <li key={todo.date}>
           <h3>{todo.title}</h3>
           <h6>{todo.author}</h6>
@@ -22,7 +22,7 @@ function TodoList(props) {
 
 const mapStateToProps = store => {
   return {
-    todos: store.todos,
+    todoState: store.todoState,
   };
 };
 

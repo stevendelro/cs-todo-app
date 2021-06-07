@@ -13,6 +13,7 @@ function todoReducer(state = initialState, action) {
   switch (type) {
     case 'UPDATE_TITLE':
       return {
+        ...state,
         todoItem: {
           ...state.todoItem,
           title: payload,
@@ -20,24 +21,31 @@ function todoReducer(state = initialState, action) {
       };
     case 'UPDATE_TEXT':
       return {
+        ...state,
         todoItem: {
           ...state.todoItem,
           text: payload,
         },
       };
-    case 'ADD_TODO':
+    case 'CREATE_TODO':
       return {
+        ...state,
         todoItem: {
           date: new Date(),
           title: payload.title,
           text: payload.text,
           completed: payload.completed,
         },
-        todos: [state.todos, state.todoItem],
+      };
+    case 'ADD_TODO':
+      return {
+        ...state,
+        todos: [...state.todos, state.todoItem]
       };
 
     case 'CLEAR_FORM':
       return {
+        ...state,
         todoItem: {
           date: '',
           title: '',

@@ -1,9 +1,12 @@
-export const addTodo = todo => ({
-  type: 'ADD_TODO',
+export const createTodo = todo => ({
+  type: 'CREATE_TODO',
   payload: todo
 });
+export const addTodo = () => ({
+  type: 'ADD_TODO',
+});
 
-export const clearForm = todo => ({
+export const clearForm = () => ({
   type: 'CLEAR_FORM',
 });
 

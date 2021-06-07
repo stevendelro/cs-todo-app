@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import todoReducer from './reducers/todoReducer';
 
 const rootReducer = combineReducers({
-  todos: todoReducer,
+  todoState: todoReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
