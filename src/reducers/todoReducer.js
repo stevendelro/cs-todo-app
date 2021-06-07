@@ -31,7 +31,7 @@ function todoReducer(state = initialState, action) {
       return {
         ...state,
         todoItem: {
-          date: new Date(),
+          date: new Date().toISOString(),
           title: payload.title,
           text: payload.text,
           completed: payload.completed,
