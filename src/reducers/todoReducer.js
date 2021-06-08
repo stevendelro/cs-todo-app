@@ -34,7 +34,7 @@ function todoReducer(state = initialState, action) {
           date: new Date().toISOString(),
           title: payload.title,
           text: payload.text,
-          completed: payload.completed,
+          completed: false,
         },
       };
     case 'ADD_TODO':

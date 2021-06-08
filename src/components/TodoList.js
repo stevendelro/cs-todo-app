@@ -1,20 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Todo from './Todo'
 
 function TodoList(props) {
-  console.log(`TodoList props`, props)
   if (props.todoState.todos.length === 0) return 'Add a todo';
 
   return (
     <ul>
       {props.todoState.todos.map(todo => (
-        <li key={todo.date}>
-          <h3>{todo.title}</h3>
-          <h6>{todo.author}</h6>
-          <p>{todo.text}</p>
-          <p>Created: {todo.date}</p>
-          <p>Completed: {todo.completed}</p>
-        </li>
+        <Todo
+          key={todo.date}
+          title={todo.title}
+          author={todo.author}
+          text={todo.text}
+          dateCreated={todo.date}
+          completed={todo.completed}
+        />
       ))}
     </ul>
   );
