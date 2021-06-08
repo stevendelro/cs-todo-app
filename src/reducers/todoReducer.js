@@ -1,7 +1,10 @@
+import * as actions from '../actions/actions'
+
 const initialState = {
   todoItem: {
     date: '',
     title: '',
+    author: 'steven',
     text: '',
     completed: false,
   },
@@ -11,7 +14,7 @@ const initialState = {
 function todoReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case 'UPDATE_TITLE':
+    case actions.UPDATE_TITLE:
       return {
         ...state,
         todoItem: {
@@ -19,7 +22,7 @@ function todoReducer(state = initialState, action) {
           title: payload,
         },
       };
-    case 'UPDATE_TEXT':
+    case actions.UPDATE_TEXT:
       return {
         ...state,
         todoItem: {
@@ -27,23 +30,24 @@ function todoReducer(state = initialState, action) {
           text: payload,
         },
       };
-    case 'CREATE_TODO':
+    case actions.CREATE_TODO:
       return {
         ...state,
         todoItem: {
+          ...state.todoItem,
           date: new Date().toISOString(),
           title: payload.title,
           text: payload.text,
           completed: false,
         },
       };
-    case 'ADD_TODO':
+    case actions.ADD_TODO:
       return {
         ...state,
         todos: [...state.todos, state.todoItem]
       };
 
-    case 'CLEAR_FORM':
+    case actions.CLEAR_FORM:
       return {
         ...state,
         todoItem: {

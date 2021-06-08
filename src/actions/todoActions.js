@@ -1,20 +1,31 @@
+import * as actions from './actions'
+
 export const createTodo = todo => ({
-  type: 'CREATE_TODO',
+  type: actions.CREATE_TODO,
   payload: todo
 });
 export const addTodo = () => ({
-  type: 'ADD_TODO',
+  type: actions.ADD_TODO,
+});
+export const finishedTodo = () => ({
+  type: actions.FINISHED_TODO,
+});
+export const deleteTodo = () => ({
+  type: actions.DELETE_TODO,
+});
+export const editTodo = () => ({
+  type: actions.EDIT_TODO,
 });
 
 export const clearForm = () => ({
-  type: 'CLEAR_FORM',
+  type: actions.CLEAR_FORM,
 });
 
 export const updateTitle = text => ({
-  type: 'UPDATE_TITLE',
+  type: actions.UPDATE_TITLE,
   payload: text
 })
 export const updateText = text => ({
-  type: 'UPDATE_TEXT',
+  type: actions.UPDATE_TEXT,
   payload: text
 })
