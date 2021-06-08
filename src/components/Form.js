@@ -5,18 +5,18 @@ import {
   addTodo,
   createTodo,
   clearForm,
-  updateTitle,
-  updateText,
+  updateTask,
+  updateDetails,
 } from '../actions/todoActions';
 
 export class Form extends Component {
-  handleTitleChange = event => this.props.updateTitle(event.target.value);
-  handleTextChange = event => this.props.updateText(event.target.value);
+  handleTitleChange = event => this.props.updateTask(event.target.value);
+  handleTextChange = event => this.props.updateDetails(event.target.value);
   handleSubmit = event => {
     event.preventDefault();
     this.props.createTodo(this.props.todoItem);
     this.props.addTodo();
-    this.props.clearForm()
+    this.props.clearForm();
   };
 
   render() {
@@ -25,13 +25,13 @@ export class Form extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            placeholder="Title"
+            placeholder="Task"
             value={this.props.todoItem.title}
             onChange={this.handleTitleChange}
           />
           <input
             type="text"
-            placeholder="Text"
+            placeholder="Details"
             value={this.props.todoItem.text}
             onChange={this.handleTextChange}
           />
@@ -53,8 +53,8 @@ const mapDispatchToProps = dispatch => {
     addTodo: bindActionCreators(addTodo, dispatch),
     createTodo: bindActionCreators(createTodo, dispatch),
     clearForm: bindActionCreators(clearForm, dispatch),
-    updateTitle: bindActionCreators(updateTitle, dispatch),
-    updateText: bindActionCreators(updateText, dispatch),
+    updateTask: bindActionCreators(updateTask, dispatch),
+    updateDetails: bindActionCreators(updateDetails, dispatch),
   };
 };
 

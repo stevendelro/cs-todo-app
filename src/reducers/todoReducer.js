@@ -8,9 +8,9 @@ const initialState = {
   todoItem: {
     id: '',
     date: '',
-    title: '',
+    task: '',
     author: 'steven',
-    text: '',
+    details: '',
     completed: false,
   },
   todos: [],
@@ -19,28 +19,26 @@ const initialState = {
 function todoReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case actions.UPDATE_TITLE:
+    case actions.UPDATE_TASK:
       return {
         ...state,
         todoItem: {
           ...state.todoItem,
-          title: payload,
+          task: payload,
         },
       };
-    case actions.UPDATE_TEXT:
+    case actions.UPDATE_DETAILS:
       return {
         ...state,
         todoItem: {
           ...state.todoItem,
-          text: payload,
+          details: payload,
         },
       };
     case actions.CREATE_TODO:
       const timestamp = new Date();
-      const formattedDate = moment(timestamp).format(
-        'MMMM Do YYYY'
-      );
-      const formattedTime = moment(timestamp).format('h:mm:ss a')
+      const formattedDate = moment(timestamp).format('MMMM Do YYYY');
+      const formattedTime = moment(timestamp).format('h:mm:ss a');
       return {
         ...state,
         todoItem: {
@@ -48,8 +46,8 @@ function todoReducer(state = initialState, action) {
           id: uuidv5('cs-todo-app', UUID_CUSTOM_NAMESPACE),
           date: formattedDate,
           time: formattedTime,
-          title: payload.title,
-          text: payload.text,
+          task: payload.task,
+          details: payload.details,
           completed: false,
         },
       };
@@ -63,7 +61,7 @@ function todoReducer(state = initialState, action) {
     //       ...state.todoItem,
     //       date: new Date().toISOString(),
     //       title: payload.title,
-    //       text: payload.text,
+    //       details: payload.details,
     //       completed: false,
     //     },
     //   };
@@ -78,8 +76,8 @@ function todoReducer(state = initialState, action) {
         ...state,
         todoItem: {
           date: '',
-          title: '',
-          text: '',
+          task: '',
+          details: '',
           completed: false,
         },
       };

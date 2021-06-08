@@ -10,9 +10,9 @@ function TodoList(props) {
       {props.todoState.todos.map(todo => (
         <Todo
           key={todo.id}
-          title={todo.title}
+          task={todo.task}
           author={todo.author}
-          text={todo.text}
+          details={todo.details}
           dateCreated={todo.date}
           completed={todo.completed}
         />
