@@ -11,8 +11,9 @@ export const finishedTodo = id => ({
   type: actions.FINISHED_TODO,
   payload: { id },
 });
-export const deleteTodo = () => ({
+export const deleteTodo = id => ({
   type: actions.DELETE_TODO,
+  payload: { id }
 });
 export const editTodo = () => ({
   type: actions.EDIT_TODO,

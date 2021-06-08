@@ -1,4 +1,4 @@
-import { v5 as uuidv5 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
 import * as actions from '../actions/actions';
 
@@ -43,7 +43,7 @@ function todoReducer(state = initialState, action) {
         ...state,
         todoItem: {
           ...state.todoItem,
-          id: uuidv5('cs-todo-app', UUID_CUSTOM_NAMESPACE),
+          id: uuidv4(),
           date: formattedDate,
           time: formattedTime,
           task: payload.task,
@@ -54,9 +54,7 @@ function todoReducer(state = initialState, action) {
     case actions.FINISHED_TODO:
       const withCompletedTodo = [];
       state.todos.forEach(todoItem => {
-        console.log(`action.payload.id`, action.payload.id)
         if (todoItem.id === action.payload.id) {
-          console.log('im here')
           todoItem.completed
             ? todoItem.completed = false
             : todoItem.completed = true
@@ -69,6 +67,17 @@ function todoReducer(state = initialState, action) {
         ...state,
         todos: withCompletedTodo,
       };
+    case actions.DELETE_TODO:
+      const withTodoRemoved = [];
+      state.todos.forEach(todoItem => {
+        if (todoItem.id !== action.payload.id) {
+          withTodoRemoved.push(todoItem);
+        }
+      });
+      return {
+        ...state,
+        todos: withTodoRemoved,
+      };
 
     case actions.ADD_TODO:
       return {
@@ -79,12 +88,7 @@ function todoReducer(state = initialState, action) {
     case actions.CLEAR_FORM:
       return {
         ...state,
-        todoItem: {
-          date: '',
-          task: '',
-          details: '',
-          completed: false,
-        },
+        todoItem: initialState.todoItem,
       };
 
     default:

@@ -26,13 +26,13 @@ export class Form extends Component {
           <input
             type="text"
             placeholder="Task"
-            value={this.props.todoItem.title}
+            value={this.props.todoItem.task}
             onChange={this.handleTitleChange}
           />
           <input
             type="text"
             placeholder="Details"
-            value={this.props.todoItem.text}
+            value={this.props.todoItem.details}
             onChange={this.handleTextChange}
           />
           <button type="submit">ADD TODO</button>

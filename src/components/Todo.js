@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 function Todo(props) {
   const handleFinish = () => props.finishedTodo(props.id)
+  console.log(`props.id`, props.id)
+  const handleDelete = () => props.deleteTodo(props.id)
   return (
     <li>
       <h3>{props.task}</h3>
@@ -15,7 +17,7 @@ function Todo(props) {
       <button onClick={handleFinish}>
         {props.completed ? 'UNDO' : 'FINISHED'}
       </button>
-      <button>DELETE</button>
+      <button onClick={handleDelete}>DELETE</button>
       <button>EDIT</button>
     </li>
   );
