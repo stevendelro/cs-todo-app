@@ -51,20 +51,25 @@ function todoReducer(state = initialState, action) {
           completed: false,
         },
       };
-    // case actions.FINISHED_TODO:
-    //   state.todos.forEach(todoItem => {
-    //     if (to)
-    //   })
-    //   return {
-    //     ...state,
-    //     todoItem: {
-    //       ...state.todoItem,
-    //       date: new Date().toISOString(),
-    //       title: payload.title,
-    //       details: payload.details,
-    //       completed: false,
-    //     },
-    //   };
+    case actions.FINISHED_TODO:
+      const withCompletedTodo = [];
+      state.todos.forEach(todoItem => {
+        console.log(`action.payload.id`, action.payload.id)
+        if (todoItem.id === action.payload.id) {
+          console.log('im here')
+          todoItem.completed
+            ? todoItem.completed = false
+            : todoItem.completed = true
+          withCompletedTodo.push(todoItem);
+        } else {
+          withCompletedTodo.push(todoItem);
+        }
+      });
+      return {
+        ...state,
+        todos: withCompletedTodo,
+      };
+
     case actions.ADD_TODO:
       return {
         ...state,

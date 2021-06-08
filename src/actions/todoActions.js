@@ -9,7 +9,7 @@ export const addTodo = () => ({
 });
 export const finishedTodo = id => ({
   type: actions.FINISHED_TODO,
-  payload: id,
+  payload: { id },
 });
 export const deleteTodo = () => ({
   type: actions.DELETE_TODO,

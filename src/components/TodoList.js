@@ -10,6 +10,7 @@ function TodoList(props) {
       {props.todoState.todos.map(todo => (
         <Todo
           key={todo.id}
+          id={todo.id}
           task={todo.task}
           author={todo.author}
           details={todo.details}
