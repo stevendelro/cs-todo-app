@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Todo from './Todo'
+import Todo from './Todo';
 
 function TodoList(props) {
   if (props.todoState.todos.length === 0) return 'Add a todo';
@@ -9,7 +9,7 @@ function TodoList(props) {
     <ul>
       {props.todoState.todos.map(todo => (
         <Todo
-          key={todo.date}
+          key={todo.id}
           title={todo.title}
           author={todo.author}
           text={todo.text}

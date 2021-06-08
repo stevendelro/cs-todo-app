@@ -7,8 +7,9 @@ export const createTodo = todo => ({
 export const addTodo = () => ({
   type: actions.ADD_TODO,
 });
-export const finishedTodo = () => ({
+export const finishedTodo = id => ({
   type: actions.FINISHED_TODO,
+  payload: id
 });
 export const deleteTodo = () => ({
   type: actions.DELETE_TODO,

@@ -7,7 +7,10 @@ function Todo(props) {
       <h6>{props.author}</h6>
       <p>{props.text}</p>
       <p>Created: {props.dateCreated}</p>
-      <p>Completed: {props.completed}</p>
+      <p>Completed: {String(props.completed)}</p>
+      <button>FINISHED</button>
+      <button>DELETE</button>
+      <button>EDIT</button>
     </li>
   );
 }
