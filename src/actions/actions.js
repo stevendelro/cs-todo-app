@@ -1,4 +1,4 @@
-export const CREATE_TODO = 'CREATE_TODO';
+export const CREATE_TASK = 'CREATE_TASK';
 export const ADD_TODO = 'ADD_TODO';
 export const FINISHED_TODO = 'FINISHED_TODO';
 export const DELETE_TODO = 'DELETE_TODO';

@@ -1,8 +1,8 @@
 import * as actions from './actions';
 
-export const createTodo = todo => ({
-  type: actions.CREATE_TODO,
-  payload: todo,
+export const createTodo = task => ({
+  type: actions.CREATE_TASK,
+  payload: task,
 });
 export const addTodo = () => ({
   type: actions.ADD_TODO,

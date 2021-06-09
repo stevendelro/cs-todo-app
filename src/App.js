@@ -1,11 +1,9 @@
-import Form from '../src/components/CreateTask/Form';
-import TodoList from './components/TaskList/TodoList';
-import SignIn from '../src/components/SignIn/SignIn'
+import HomePage from "./components/Home/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <SignIn />
+      <HomePage />
     </div>
   );
 }

@@ -2,8 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
 import * as actions from '../actions/actions';
 
-const UUID_CUSTOM_NAMESPACE = 'e664c366-fbcc-4461-a226-24f0fa011153';
-
 const initialState = {
   todoItem: {
     id: '',
@@ -35,7 +33,7 @@ function todoReducer(state = initialState, action) {
           details: payload,
         },
       };
-    case actions.CREATE_TODO:
+    case actions.CREATE_TASK:
       const timestamp = new Date();
       const formattedDate = moment(timestamp).format('MMMM Do YYYY');
       const formattedTime = moment(timestamp).format('h:mm:ss a');
