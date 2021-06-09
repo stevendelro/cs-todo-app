@@ -1,6 +1,6 @@
 import React from 'react'
-import CreateTaskPage from './CreateTaskPage/CreateTaskPage'
-import TaskListPage from './TaskListPage/TaskListPage'
+import CreateTaskPage from './CreateTaskPage'
+import TaskListPage from './TaskListPage'
 
 
 // TODO: style each page to render on opposite sides
