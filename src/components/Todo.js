@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 
 function Todo(props) {
   const handleFinish = () => props.finishedTodo(props.id)
-  console.log(`props.id`, props.id)
   const handleDelete = () => props.deleteTodo(props.id)
   return (
     <li>
