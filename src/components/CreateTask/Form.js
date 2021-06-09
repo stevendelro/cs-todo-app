@@ -7,7 +7,7 @@ import {
   clearForm,
   updateTask,
   updateDetails,
-} from '../actions/todoActions';
+} from '../../actions/todoActions';
 
 export class Form extends Component {
   handleTitleChange = event => this.props.updateTask(event.target.value);

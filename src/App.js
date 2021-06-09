@@ -1,12 +1,11 @@
-import Form from './components/Form';
-import TodoList from './components/TodoList';
+import Form from '../src/components/CreateTask/Form';
+import TodoList from './components/TaskList/TodoList';
+import SignIn from '../src/components/SignIn/SignIn'
 
 function App() {
   return (
     <div className="App">
-      <h1>Redux Primer</h1>
-      <Form />
-      <TodoList />
+      <SignIn />
     </div>
   );
 }
