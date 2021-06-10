@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ListItem(props) {
+function TaskListItem(props) {
   const handleFinish = () => props.finishedTask(props.id);
   const handleDelete = () => props.deleteTask(props.id);
   return (
@@ -19,4 +19,4 @@ function ListItem(props) {
   );
 }
 
-export default ListItem;
+export default TaskListItem;

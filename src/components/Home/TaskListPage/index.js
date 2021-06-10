@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as actionCreators from '../../../actions/taskActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TaskList from './List';
+import TaskList from './TaskList';
 
 class TaskListPage extends Component {
   render() {
