@@ -35,7 +35,7 @@ function taskReducer(state = initialState, action) {
       };
     case actions.CREATE_TASK:
       const timestamp = new Date();
-      const formattedDate = moment(timestamp).format('MMMM Do YYYY');
+      const formattedDate = moment(timestamp).format('MMMM Do - h:mm:ss');
       const formattedTime = moment(timestamp).format('h:mm:ss a');
       return {
         ...state,

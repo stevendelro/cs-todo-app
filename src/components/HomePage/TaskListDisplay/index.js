@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
-import * as actionCreators from '../../../actions/taskActions';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import * as actionCreators from '../../../actions/taskActions';
 import TaskList from './TaskList';
 
-class TaskListPage extends Component {
-  render() {
-    const { taskState, finishedTask, deleteTask, editTask } = this.props;
-    return (
-      <div>
-        <TaskList
-          taskState={taskState}
-          finishedTask={finishedTask}
-          deleteTask={deleteTask}
-          editTask={editTask}
-        />
-      </div>
-    );
+const useStyles = makeStyles(theme => ({
+  drawerSpacer: {
+    marginLeft: '600px'
   }
+}))
+
+function TaskListPage({ taskState, finishedTask, deleteTask, editTask }) {
+  const classes = useStyles();
+  return (
+    <div className={classes.drawerSpacer}>
+      <TaskList
+        taskState={taskState}
+        finishedTask={finishedTask}
+        deleteTask={deleteTask}
+        editTask={editTask}
+      />
+    </div>
+  );
 }
 
 const mapStateToProps = store => {

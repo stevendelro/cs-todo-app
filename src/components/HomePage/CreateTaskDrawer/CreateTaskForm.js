@@ -16,7 +16,7 @@ function CreateTaskForm(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.createTask(props.taskItem);
+    props.createTask(props.taskItemState.task);
     props.addTask();
     props.clearForm();
   };
