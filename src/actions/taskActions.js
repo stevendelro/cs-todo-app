@@ -2,7 +2,7 @@ import * as actions from './actions';
 
 export const createTask = task => ({
   type: actions.CREATE_TASK,
-  payload: { task },
+  payload: task
 });
 export const addTask = () => ({
   type: actions.ADD_TASK,
