@@ -1,6 +1,16 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+}))
 
 function CreateTaskForm(props) {
+  const classes = useStyles()
   const handleTitleChange = event => props.updateTask(event.target.value);
   const handleTextChange = event => props.updateDetails(event.target.value);
 
@@ -12,7 +22,7 @@ function CreateTaskForm(props) {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className={classes.inputContainer} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Task"
