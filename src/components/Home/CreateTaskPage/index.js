@@ -1,36 +1,35 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  addTodo,
-  createTodo,
+  addTask,
+  createTask,
   clearForm,
   updateTask,
   updateDetails,
-} from '../../../actions/todoActions';
+} from '../../../actions/taskActions';
 import CreateTaskForm from './CreateTaskForm';
 
 class CreateTaskPage extends Component {
-
   render() {
     const {
-      addTodo,
-      createTodo,
+      addTask,
+      createTask,
       clearForm,
       updateTask,
       updateDetails,
-      todoItemState
-    } = this.props
+      taskItemState,
+    } = this.props;
 
     return (
       <div>
         <CreateTaskForm
-          addTodo={addTodo}
-          createTodo={createTodo}
+          addTask={addTask}
+          createTask={createTask}
           clearForm={clearForm}
           updateTask={updateTask}
           updateDetails={updateDetails}
-          todoItemState={todoItemState}
+          taskItemState={taskItemState}
         />
       </div>
     );
@@ -39,18 +38,18 @@ class CreateTaskPage extends Component {
 
 const mapStateToProps = store => {
   return {
-    todoItemState: store.todoState.todoItem,
+    taskItemState: store.taskState.taskItem,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTodo: bindActionCreators(addTodo, dispatch),
-    createTodo: bindActionCreators(createTodo, dispatch),
+    addTask: bindActionCreators(addTask, dispatch),
+    createTask: bindActionCreators(createTask, dispatch),
     clearForm: bindActionCreators(clearForm, dispatch),
     updateTask: bindActionCreators(updateTask, dispatch),
     updateDetails: bindActionCreators(updateDetails, dispatch),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateTaskPage)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTaskPage);

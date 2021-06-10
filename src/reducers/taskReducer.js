@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as actions from '../actions/actions';
 
 const initialState = {
-  todoItem: {
+  taskItem: {
     id: '',
     date: '',
     task: '',
@@ -11,25 +11,25 @@ const initialState = {
     details: '',
     completed: false,
   },
-  todos: [],
+  tasks: [],
 };
 
-function todoReducer(state = initialState, action) {
+function taskReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case actions.UPDATE_TASK:
       return {
         ...state,
-        todoItem: {
-          ...state.todoItem,
+        taskItem: {
+          ...state.taskItem,
           task: payload,
         },
       };
     case actions.UPDATE_DETAILS:
       return {
         ...state,
-        todoItem: {
-          ...state.todoItem,
+        taskItem: {
+          ...state.taskItem,
           details: payload,
         },
       };
@@ -39,8 +39,8 @@ function todoReducer(state = initialState, action) {
       const formattedTime = moment(timestamp).format('h:mm:ss a');
       return {
         ...state,
-        todoItem: {
-          ...state.todoItem,
+        taskItem: {
+          ...state.taskItem,
           id: uuidv4(),
           date: formattedDate,
           time: formattedTime,
@@ -49,44 +49,44 @@ function todoReducer(state = initialState, action) {
           completed: false,
         },
       };
-    case actions.FINISHED_TODO:
-      const withCompletedTodo = [];
-      state.todos.forEach(todoItem => {
-        if (todoItem.id === action.payload.id) {
-          todoItem.completed
-            ? todoItem.completed = false
-            : todoItem.completed = true
-          withCompletedTodo.push(todoItem);
+    case actions.FINISHED_TASK:
+      const withCompletedTask = [];
+      state.tasks.forEach(taskItem => {
+        if (taskItem.id === action.payload.id) {
+          taskItem.completed
+            ? (taskItem.completed = false)
+            : (taskItem.completed = true);
+          withCompletedTask.push(taskItem);
         } else {
-          withCompletedTodo.push(todoItem);
+          withCompletedTask.push(taskItem);
         }
       });
       return {
         ...state,
-        todos: withCompletedTodo,
+        tasks: withCompletedTask,
       };
-    case actions.DELETE_TODO:
-      const withTodoRemoved = [];
-      state.todos.forEach(todoItem => {
-        if (todoItem.id !== action.payload.id) {
-          withTodoRemoved.push(todoItem);
+    case actions.DELETE_TASK:
+      const withTaskRemoved = [];
+      state.tasks.forEach(taskItem => {
+        if (taskItem.id !== action.payload.id) {
+          withTaskRemoved.push(taskItem);
         }
       });
       return {
         ...state,
-        todos: withTodoRemoved,
+        tasks: withTaskRemoved,
       };
 
-    case actions.ADD_TODO:
+    case actions.ADD_TASK:
       return {
         ...state,
-        todos: [...state.todos, state.todoItem],
+        tasks: [...state.tasks, state.taskItem],
       };
 
     case actions.CLEAR_FORM:
       return {
         ...state,
-        todoItem: initialState.todoItem,
+        taskItem: initialState.taskItem,
       };
 
     default:
@@ -94,4 +94,4 @@ function todoReducer(state = initialState, action) {
   }
 }
 
-export default todoReducer;
+export default taskReducer;

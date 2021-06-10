@@ -3,11 +3,11 @@ import React from 'react';
 function CreateTaskForm(props) {
   const handleTitleChange = event => props.updateTask(event.target.value);
   const handleTextChange = event => props.updateDetails(event.target.value);
-  
+
   const handleSubmit = event => {
     event.preventDefault();
-    props.createTodo(props.todoItem);
-    props.addTodo();
+    props.createTask(props.taskItem);
+    props.addTask();
     props.clearForm();
   };
   return (
@@ -16,13 +16,13 @@ function CreateTaskForm(props) {
         <input
           type="text"
           placeholder="Task"
-          value={props.todoItemState.task}
+          value={props.taskItemState.task}
           onChange={handleTitleChange}
         />
         <input
           type="text"
           placeholder="Details"
-          value={props.todoItemState.details}
+          value={props.taskItemState.details}
           onChange={handleTextChange}
         />
         <button type="submit">ADD TODO</button>

@@ -1,9 +1,9 @@
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import logger from 'redux-logger';
-import todoReducer from './reducers/todoReducer';
+import taskReducer from './reducers/taskReducer';
 
 const rootReducer = combineReducers({
-  todoState: todoReducer,
+  taskState: taskReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

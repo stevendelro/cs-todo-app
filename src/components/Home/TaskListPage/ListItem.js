@@ -1,8 +1,8 @@
 import React from 'react';
 
 function ListItem(props) {
-  const handleFinish = () => props.finishedTodo(props.id);
-  const handleDelete = () => props.deleteTodo(props.id);
+  const handleFinish = () => props.finishedTask(props.id);
+  const handleDelete = () => props.deleteTask(props.id);
   return (
     <li>
       <h3>{props.task}</h3>

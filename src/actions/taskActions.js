@@ -1,22 +1,22 @@
 import * as actions from './actions';
 
-export const createTodo = task => ({
+export const createTask = task => ({
   type: actions.CREATE_TASK,
-  payload: task,
+  payload: {task},
 });
-export const addTodo = () => ({
-  type: actions.ADD_TODO,
+export const addTask = () => ({
+  type: actions.ADD_TASK,
 });
-export const finishedTodo = id => ({
-  type: actions.FINISHED_TODO,
+export const finishedTask = id => ({
+  type: actions.FINISHED_TASK,
   payload: { id },
 });
-export const deleteTodo = id => ({
-  type: actions.DELETE_TODO,
-  payload: { id }
+export const deleteTask = id => ({
+  type: actions.DELETE_TASK,
+  payload: { id },
 });
-export const editTodo = () => ({
-  type: actions.EDIT_TODO,
+export const editTask = () => ({
+  type: actions.EDIT_TASK,
 });
 
 export const clearForm = () => ({

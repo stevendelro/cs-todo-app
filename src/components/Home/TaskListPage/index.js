@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import * as actionCreators from '../../../actions/todoActions';
+import * as actionCreators from '../../../actions/taskActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TodoList from './List';
+import TaskList from './List';
 
 class TaskListPage extends Component {
   render() {
-    const { todoState, finishedTodo, deleteTodo, editTodo } = this.props;
+    const { taskState, finishedTask, deleteTask, editTask } = this.props;
     return (
       <div>
-        <TodoList
-          todoState={todoState}
-          finishedTodo={finishedTodo}
-          deleteTodo={deleteTodo}
-          editTodo={editTodo}
+        <TaskList
+          taskState={taskState}
+          finishedTask={finishedTask}
+          deleteTask={deleteTask}
+          editTask={editTask}
         />
       </div>
     );
@@ -22,16 +22,16 @@ class TaskListPage extends Component {
 
 const mapStateToProps = store => {
   return {
-    todoState: store.todoState,
+    taskState: store.taskState,
   };
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      finishedTodo: actionCreators.finishedTodo,
-      deleteTodo: actionCreators.deleteTodo,
-      editTodo: actionCreators.editTodo,
+      finishedTask: actionCreators.finishedTask,
+      deleteTask: actionCreators.deleteTask,
+      editTask: actionCreators.editTask,
     },
     dispatch
   );
