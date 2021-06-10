@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   summaryDate: {
-    marginLeft: '30px'
+    marginLeft: '30px',
   },
   detailsFooter: {
     display: 'flex',
@@ -43,21 +43,41 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const StyledAccordianSummary = withStyles(theme => {
+  const transition = {
+    duration: theme.transitions.duration.shortest,
+  };
+  return {
+    content: {
+      display: 'flex',
+      flexDirection: 'column',
+      flexGrow: 1,
+      transition: theme.transitions.create(['margin'], transition),
+      margin: '12px 0',
+      '&$expanded': {
+        margin: '20px 0',
+      },
+    },
+  };
+})(AccordionSummary);
+
 function TaskListItem(props) {
   const classes = useStyles();
   const handleFinish = () => props.finishedTask(props.id);
   const handleDelete = () => props.deleteTask(props.id);
   return (
     <Accordion className={classes.root}>
-      <AccordionSummary
+      <StyledAccordianSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header">
         <Box className={classes.summaryContainer}>
           <Typography>{props.task}</Typography>
-          <Typography className={classes.summaryDate} variant="overline">{props.dateCreated}</Typography>
+          <Typography className={classes.summaryDate} variant="overline">
+            {props.dateCreated}
+          </Typography>
         </Box>
-      </AccordionSummary>
+      </StyledAccordianSummary>
       <AccordionDetails className={classes.detailsContainer}>
         <Box>
           <Typography>
