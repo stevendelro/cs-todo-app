@@ -5,14 +5,14 @@ const useStyles = makeStyles(theme => ({
   inputContainer: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
-  }
-}))
+    alignItems: 'center',
+  },
+}));
 
 function CreateTaskForm(props) {
-  const classes = useStyles()
-  const handleTitleChange = event => props.updateTask(event.target.value);
-  const handleTextChange = event => props.updateDetails(event.target.value);
+  const classes = useStyles();
+  const handleTitleChange = event => props.createTaskTitle(event.target.value);
+  const handleTextChange = event => props.createTaskDetails(event.target.value);
 
   const handleSubmit = event => {
     event.preventDefault();
