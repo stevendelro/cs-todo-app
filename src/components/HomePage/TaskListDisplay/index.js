@@ -7,19 +7,30 @@ import TaskList from './TaskList';
 
 const useStyles = makeStyles(theme => ({
   drawerSpacer: {
-    marginLeft: '600px'
-  }
-}))
+    marginLeft: '600px',
+  },
+}));
 
-function TaskListPage({ taskState, finishedTask, deleteTask, editTask }) {
+function TaskListPage({
+  tasks,
+  finishedTask,
+  deleteTask,
+  editTask,
+  currentlyEditing,
+  editedTaskID,
+  editTitleDetails,
+}) {
   const classes = useStyles();
   return (
     <div className={classes.drawerSpacer}>
       <TaskList
-        taskState={taskState}
+        tasks={tasks}
         finishedTask={finishedTask}
         deleteTask={deleteTask}
         editTask={editTask}
+        editedTaskID={editedTaskID}
+        editTitleDetails={editTitleDetails}
+        currentlyEditing={currentlyEditing}
       />
     </div>
   );
@@ -27,7 +38,9 @@ function TaskListPage({ taskState, finishedTask, deleteTask, editTask }) {
 
 const mapStateToProps = store => {
   return {
-    taskState: store.taskState,
+    tasks: store.tasks,
+    currentlyEditing: store.tasks.currentlyEditing,
+    editedTaskID: store.tasks.editedTaskID,
   };
 };
 
@@ -37,6 +50,7 @@ const mapDispatchToProps = dispatch =>
       finishedTask: actionCreators.finishedTask,
       deleteTask: actionCreators.deleteTask,
       editTask: actionCreators.editTask,
+      editTitleDetails: actionCreators.editTitleDetails,
     },
     dispatch
   );

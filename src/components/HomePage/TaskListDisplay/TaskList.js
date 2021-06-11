@@ -2,11 +2,10 @@ import React from 'react';
 import TaskListItem from './TaskListItem';
 
 export default function TaskList(props) {
-  if (props.taskState.tasks.length === 0) return 'Add a task';
-
+  if (props.tasks.length === 0) return 'Add a task';
   return (
     <ul>
-      {props.taskState.tasks.map(taskListItem => (
+      {props.tasks.taskList.map(taskListItem => (
         <TaskListItem
           key={taskListItem.id}
           id={taskListItem.id}
@@ -17,9 +16,12 @@ export default function TaskList(props) {
           completed={taskListItem.completed}
           finishedTask={props.finishedTask}
           deleteTask={props.deleteTask}
+          editTask={props.editTask}
+          editedTaskID={props.editedTaskID}
+          editTitleDetails={props.editTitleDetails}
+          currentlyEditing={props.currentlyEditing}
         />
       ))}
     </ul>
   );
 }
-

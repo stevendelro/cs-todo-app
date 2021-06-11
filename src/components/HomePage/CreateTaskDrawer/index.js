@@ -8,8 +8,8 @@ import {
   addTask,
   createTask,
   clearForm,
-  updateTask,
-  updateDetails,
+  createTaskTitle,
+  createTaskDetails,
 } from '../../../actions/taskActions';
 import CreateTaskForm from './CreateTaskForm';
 
@@ -38,8 +38,8 @@ function CreateTaskDrawer(props) {
     addTask,
     createTask,
     clearForm,
-    updateTask,
-    updateDetails,
+    createTaskTitle,
+    createTaskDetails,
     taskItemState,
   } = props;
 
@@ -56,8 +56,8 @@ function CreateTaskDrawer(props) {
           addTask={addTask}
           createTask={createTask}
           clearForm={clearForm}
-          updateTask={updateTask}
-          updateDetails={updateDetails}
+          createTaskTitle={createTaskTitle}
+          createTaskDetails={createTaskDetails}
           taskItemState={taskItemState}
         />
       </div>
@@ -67,7 +67,7 @@ function CreateTaskDrawer(props) {
 
 const mapStateToProps = store => {
   return {
-    taskItemState: store.taskState.taskItem,
+    taskItemState: store.tasks.taskItem,
   };
 };
 
@@ -76,8 +76,8 @@ const mapDispatchToProps = dispatch => {
     addTask: bindActionCreators(addTask, dispatch),
     createTask: bindActionCreators(createTask, dispatch),
     clearForm: bindActionCreators(clearForm, dispatch),
-    updateTask: bindActionCreators(updateTask, dispatch),
-    updateDetails: bindActionCreators(updateDetails, dispatch),
+    createTaskTitle: bindActionCreators(createTaskTitle, dispatch),
+    createTaskDetails: bindActionCreators(createTaskDetails, dispatch),
   };
 };
 

@@ -10,14 +10,18 @@ const initialState = {
     author: 'steven',
     details: '',
     completed: false,
+    dateEdited: 'never',
   },
-  tasks: [],
+  currentlyEditing: false,
+  editedTaskID: '',
+  taskList: [],
 };
 
 function taskReducer(state = initialState, action) {
   const { type, payload } = action;
+  let timestamp, formattedDate
   switch (type) {
-    case actions.UPDATE_TASK:
+    case actions.CREATE_TASK_TITLE:
       return {
         ...state,
         taskItem: {
@@ -25,7 +29,7 @@ function taskReducer(state = initialState, action) {
           task: payload,
         },
       };
-    case actions.UPDATE_DETAILS:
+    case actions.CREATE_TASK_DETAILS:
       return {
         ...state,
         taskItem: {
@@ -34,24 +38,50 @@ function taskReducer(state = initialState, action) {
         },
       };
     case actions.CREATE_TASK:
-      const timestamp = new Date();
-      const formattedDate = moment(timestamp).format('MMMM Do - h:mm:ss');
-      const formattedTime = moment(timestamp).format('h:mm:ss a');
+      timestamp = new Date();
+      formattedDate = moment(timestamp).format('MMMM Do - h:mm:ss');
       return {
         ...state,
         taskItem: {
           ...state.taskItem,
           id: uuidv4(),
           date: formattedDate,
-          time: formattedTime,
           task: payload.task,
           details: payload.details,
           completed: false,
         },
       };
+    case actions.EDIT_TITLE_DETAILS:
+      const includeEdit = [];
+      timestamp = new Date();
+      formattedDate = moment(timestamp).format('MMMM Do - h:mm:ss');
+      let withTaskEdited = state.taskList;
+
+      withTaskEdited.forEach(taskItem => {
+        if (taskItem.id === action.payload.id) {
+          taskItem.dateEdited = formattedDate;
+          taskItem.task = payload.text.title;
+          taskItem.details = payload.text.details;
+        }
+        includeEdit.push(taskItem);
+      });
+
+      return {
+        ...state,
+        currentlyEditing: !state.currentlyEditing,
+        taskList: withTaskEdited,
+      };
+
+    case actions.EDIT_TASK:
+      return {
+        ...state,
+        currentlyEditing: !state.currentlyEditing,
+        editedTaskID: payload.id,
+      };
+
     case actions.FINISHED_TASK:
       const withCompletedTask = [];
-      state.tasks.forEach(taskItem => {
+      state.taskList.forEach(taskItem => {
         if (taskItem.id === action.payload.id) {
           taskItem.completed
             ? (taskItem.completed = false)
@@ -63,24 +93,24 @@ function taskReducer(state = initialState, action) {
       });
       return {
         ...state,
-        tasks: withCompletedTask,
+        taskList: withCompletedTask,
       };
     case actions.DELETE_TASK:
       const withTaskRemoved = [];
-      state.tasks.forEach(taskItem => {
+      state.taskList.forEach(taskItem => {
         if (taskItem.id !== action.payload.id) {
           withTaskRemoved.push(taskItem);
         }
       });
       return {
         ...state,
-        tasks: withTaskRemoved,
+        taskList: withTaskRemoved,
       };
 
     case actions.ADD_TASK:
       return {
         ...state,
-        tasks: [...state.tasks, state.taskItem],
+        taskList: [...state.taskList, state.taskItem],
       };
 
     case actions.CLEAR_FORM:

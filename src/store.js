@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import taskReducer from './reducers/taskReducer';
 
 const rootReducer = combineReducers({
-  taskState: taskReducer,
+  tasks: taskReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
