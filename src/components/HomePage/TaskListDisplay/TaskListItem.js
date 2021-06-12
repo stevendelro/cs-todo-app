@@ -8,8 +8,9 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
   summaryDate: {
     marginLeft: '30px',
   },
+  chip: { marginRight: theme.spacing(3) },
   detailsFooter: {
     display: 'flex',
     flexDirection: 'row',
@@ -80,6 +82,7 @@ function TaskListItem({
   author,
   details,
   completed,
+  priority,
 }) {
   const classes = useStyles();
   const [taskTitle, setTaskTitle] = useState('');
@@ -100,7 +103,19 @@ function TaskListItem({
         aria-controls="panel1a-content"
         id="panel1a-header">
         <Box className={classes.summaryContainer}>
-          <Typography>{task}</Typography>
+          {task ? (
+            <Typography>
+              <Chip
+                className={classes.chip}
+                size="small"
+                label={priority}
+                variant="outlined"
+              />{' '}
+              {task}
+            </Typography>
+          ) : (
+            <div></div>
+          )}
           <Typography className={classes.summaryDate} variant="overline">
             {dateCreated}
           </Typography>
@@ -122,10 +137,14 @@ function TaskListItem({
             />
           </Grid>
         ) : (
-          <p className={classes.detailsParagraph}>{details}</p>
+          <Typography variant="body1" className={classes.detailsParagraph}>
+            {details}
+          </Typography>
         )}
         <Box className={classes.detailsFooter}>
-          <Typography variant="overline">author: {author}</Typography>
+          <Typography variant="overline">
+            author: {author} — priority: {priority}
+          </Typography>
           {currentlyEditing ? (
             <Button variant="text" color="primary" onClick={handleSubmitEdit}>
               SUBMIT

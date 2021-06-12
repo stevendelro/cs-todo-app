@@ -20,6 +20,7 @@ export default function TaskList(props) {
           editedTaskID={props.editedTaskID}
           editTitleDetails={props.editTitleDetails}
           currentlyEditing={props.currentlyEditing}
+          priority={taskListItem.priority}
         />
       ))}
     </ul>

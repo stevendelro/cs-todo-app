@@ -11,6 +11,7 @@ const initialState = {
     details: '',
     completed: false,
     dateEdited: 'never',
+    priority: 'low'
   },
   currentlyEditing: false,
   editedTaskID: '',
@@ -35,6 +36,14 @@ function taskReducer(state = initialState, action) {
         taskItem: {
           ...state.taskItem,
           details: payload,
+        },
+      };
+    case actions.CREATE_TASK_PRIORITY:
+      return {
+        ...state,
+        taskItem: {
+          ...state.taskItem,
+          priority: payload.priority,
         },
       };
     case actions.CREATE_TASK:

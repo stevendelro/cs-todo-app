@@ -10,6 +10,7 @@ import {
   clearForm,
   createTaskTitle,
   createTaskDetails,
+  createTaskPriority,
 } from '../../../actions/taskActions';
 import CreateTaskForm from './CreateTaskForm';
 
@@ -40,6 +41,7 @@ function CreateTaskDrawer(props) {
     clearForm,
     createTaskTitle,
     createTaskDetails,
+    createTaskPriority,
     taskItemState,
   } = props;
 
@@ -59,6 +61,7 @@ function CreateTaskDrawer(props) {
           createTaskTitle={createTaskTitle}
           createTaskDetails={createTaskDetails}
           taskItemState={taskItemState}
+          createTaskPriority={createTaskPriority}
         />
       </div>
     </Drawer>
@@ -78,6 +81,7 @@ const mapDispatchToProps = dispatch => {
     clearForm: bindActionCreators(clearForm, dispatch),
     createTaskTitle: bindActionCreators(createTaskTitle, dispatch),
     createTaskDetails: bindActionCreators(createTaskDetails, dispatch),
+    createTaskPriority: bindActionCreators(createTaskPriority, dispatch),
   };
 };
 

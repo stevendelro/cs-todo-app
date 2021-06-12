@@ -34,4 +34,7 @@ export const editTitleDetails = (id, text) => ({
   type: actions.EDIT_TITLE_DETAILS,
   payload: { id, text },
 });
-
+export const createTaskPriority = priority => ({
+  type: actions.CREATE_TASK_PRIORITY,
+  payload: { priority }
+})

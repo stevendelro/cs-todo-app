@@ -31,15 +31,16 @@ const useStyles = makeStyles(theme => ({
 
 function CreateTaskForm(props) {
   const classes = useStyles();
-  const [value, setValue] = useState('low');
+  const [priority, setPriority] = useState('low');
 
-  const handleChange = event => {
-    setValue(event.target.value);
+  const handlePriority = event => {
+    setPriority(event.target.value);
   };
   const handleTitleChange = event => props.createTaskTitle(event.target.value);
   const handleTextChange = event => props.createTaskDetails(event.target.value);
 
   const handleSubmit = event => {
+    props.createTaskPriority(priority);
     event.preventDefault();
     props.createTask(props.taskItemState);
     props.addTask();
@@ -49,7 +50,9 @@ function CreateTaskForm(props) {
     <div>
       <form className={classes.inputContainer} onSubmit={handleSubmit}>
         <Container className={classes.container}>
-        <Typography className={classes.createTaskHeading} variant='h3'>Create Task</Typography>
+          <Typography className={classes.createTaskHeading} variant="h3">
+            Create Task
+          </Typography>
           <TextField
             className={classes.textFields}
             variant="outlined"
@@ -71,8 +74,8 @@ function CreateTaskForm(props) {
             <RadioGroup
               aria-label="priorities"
               name="prioritiesGroup"
-              value={value}
-              onChange={handleChange}>
+              value={priority}
+              onChange={handlePriority}>
               <Grid
                 container
                 direction="row"
