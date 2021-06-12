@@ -33,16 +33,18 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3, 0, 0),
     minHeight: '96px',
   },
-  summaryContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  chip: {
+    flexBasis: 0,
+  },
+  chipContainer: {
+    width: '73px'
+  },
+  taskTitle: {
+    flexGrow: 1
   },
   summaryDate: {
     marginLeft: '30px',
   },
-  chip: { marginRight: theme.spacing(3) },
   detailsFooter: {
     display: 'flex',
     flexDirection: 'row',
@@ -58,8 +60,9 @@ const StyledAccordianSummary = withStyles(theme => {
   return {
     content: {
       display: 'flex',
-      flexDirection: 'column',
-      flexGrow: 1,
+      // flexDirection: 'row',
+      // justifyContent: 'space-between',
+      // flexGrow: 1,
       transition: theme.transitions.create(['margin'], transition),
       margin: '12px 0',
       '&$expanded': {
@@ -102,24 +105,24 @@ function TaskListItem({
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header">
-        <Box className={classes.summaryContainer}>
-          {task ? (
-            <Typography>
+        {task ? (
+          <>
+            <div className={classes.chipContainer}>
               <Chip
                 className={classes.chip}
                 size="small"
                 label={priority}
                 variant="outlined"
-              />{' '}
-              {task}
-            </Typography>
-          ) : (
-            <div></div>
-          )}
-          <Typography className={classes.summaryDate} variant="overline">
-            {dateCreated}
-          </Typography>
-        </Box>
+              />
+            </div>
+            <Typography className={classes.taskTitle}>{task}</Typography>
+          </>
+        ) : (
+          <div></div>
+        )}
+        <Typography className={classes.summaryDate} variant="overline">
+          {dateCreated}
+        </Typography>
       </StyledAccordianSummary>
 
       <AccordionDetails className={classes.detailsContainer}>
