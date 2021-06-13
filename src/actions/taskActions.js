@@ -30,11 +30,11 @@ export const createTaskDetails = text => ({
   type: actions.CREATE_TASK_DETAILS,
   payload: text,
 });
-export const editTitleDetails = (id, text) => ({
-  type: actions.EDIT_TITLE_DETAILS,
-  payload: { id, text },
+export const editTaskDetails = (id, edits) => ({
+  type: actions.EDIT_TASK_DETAILS,
+  payload: { id, edits },
 });
 export const createTaskPriority = priority => ({
   type: actions.CREATE_TASK_PRIORITY,
-  payload: { priority }
-})
+  payload: { priority },
+});

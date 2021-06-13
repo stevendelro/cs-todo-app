@@ -18,7 +18,7 @@ export default function TaskList(props) {
           deleteTask={props.deleteTask}
           editTask={props.editTask}
           editedTaskID={props.editedTaskID}
-          editTitleDetails={props.editTitleDetails}
+          editTaskDetails={props.editTaskDetails}
           currentlyEditing={props.currentlyEditing}
           priority={taskListItem.priority}
         />

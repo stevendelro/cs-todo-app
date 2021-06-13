@@ -11,7 +11,7 @@ const initialState = {
     details: '',
     completed: false,
     dateEdited: 'never',
-    priority: 'low'
+    priority: 'low',
   },
   currentlyEditing: false,
   editedTaskID: '',
@@ -20,7 +20,7 @@ const initialState = {
 
 function taskReducer(state = initialState, action) {
   const { type, payload } = action;
-  let timestamp, formattedDate
+  let timestamp, formattedDate;
   switch (type) {
     case actions.CREATE_TASK_TITLE:
       return {
@@ -60,7 +60,7 @@ function taskReducer(state = initialState, action) {
           completed: false,
         },
       };
-    case actions.EDIT_TITLE_DETAILS:
+    case actions.EDIT_TASK_DETAILS:
       const includeEdit = [];
       timestamp = new Date();
       formattedDate = moment(timestamp).format('MMMM Do - h:mm:ss');
@@ -69,8 +69,9 @@ function taskReducer(state = initialState, action) {
       withTaskEdited.forEach(taskItem => {
         if (taskItem.id === action.payload.id) {
           taskItem.dateEdited = formattedDate;
-          taskItem.task = payload.text.title;
-          taskItem.details = payload.text.details;
+          taskItem.task = payload.edits.title;
+          taskItem.details = payload.edits.details;
+          taskItem.priority = payload.edits.priority;
         }
         includeEdit.push(taskItem);
       });

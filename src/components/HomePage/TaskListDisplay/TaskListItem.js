@@ -85,7 +85,7 @@ function TaskListItem({
   editTask,
   id,
   editedTaskID,
-  editTitleDetails,
+  editTaskDetails,
   currentlyEditing,
   task,
   dateCreated,
@@ -105,12 +105,17 @@ function TaskListItem({
   const handleSubmitCancel = () => editTask();
   const handlePriorityChange = e => setNewPriority(e.target.value);
   const handleSubmitEdit = () =>
-    editTitleDetails(id, {
-      title: taskTitle,
+    editTaskDetails(id, {
+      title: taskTitle ? taskTitle : task,
       details: taskDetails,
+      priority: newPriority !== priority ? newPriority : priority,
     });
+
+
   return (
-    <Accordion className={classes.root}>
+    <Accordion
+      className={classes.root}
+      TransitionProps={{ unmountOnExit: true }}>
       <StyledAccordianSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"

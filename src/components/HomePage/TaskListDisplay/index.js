@@ -18,7 +18,7 @@ function TaskListPage({
   editTask,
   currentlyEditing,
   editedTaskID,
-  editTitleDetails,
+  editTaskDetails,
 }) {
   const classes = useStyles();
   return (
@@ -29,7 +29,7 @@ function TaskListPage({
         deleteTask={deleteTask}
         editTask={editTask}
         editedTaskID={editedTaskID}
-        editTitleDetails={editTitleDetails}
+        editTaskDetails={editTaskDetails}
         currentlyEditing={currentlyEditing}
       />
     </div>
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch =>
       finishedTask: actionCreators.finishedTask,
       deleteTask: actionCreators.deleteTask,
       editTask: actionCreators.editTask,
-      editTitleDetails: actionCreators.editTitleDetails,
+      editTaskDetails: actionCreators.editTaskDetails,
     },
     dispatch
   );
