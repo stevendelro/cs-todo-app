@@ -130,9 +130,15 @@ function TaskListItem({
         ) : (
           <div></div>
         )}
-        <Typography className={classes.summaryDate} variant="overline">
-          {dateCreated}
-        </Typography>
+        {completed ? (
+          <Typography className={classes.summaryDate} variant="overline">
+            completed
+          </Typography>
+        ) : (
+          <Typography className={classes.summaryDate} variant="overline">
+            {dateCreated}
+          </Typography>
+        )}
       </StyledAccordianSummary>
 
       <AccordionDetails className={classes.detailsContainer}>
