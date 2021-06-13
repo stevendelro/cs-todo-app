@@ -11,6 +11,10 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,13 +41,16 @@ const useStyles = makeStyles(theme => ({
     flexBasis: 0,
   },
   chipContainer: {
-    width: '73px'
+    width: '73px',
   },
   taskTitle: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   summaryDate: {
     marginLeft: '30px',
+  },
+  buttonGroup: {
+    height: '42px',
   },
   detailsFooter: {
     display: 'flex',
@@ -90,10 +97,13 @@ function TaskListItem({
   const classes = useStyles();
   const [taskTitle, setTaskTitle] = useState('');
   const [taskDetails, setTaskDetails] = useState('');
+  const [newPriority, setNewPriority] = useState('low');
 
   const handleFinish = () => finishedTask(id);
   const handleDelete = () => deleteTask(id);
   const handleEdit = () => editTask(id);
+  const handleSubmitCancel = () => editTask();
+  const handlePriorityChange = e => setNewPriority(e.target.value);
   const handleSubmitEdit = () =>
     editTitleDetails(id, {
       title: taskTitle,
@@ -145,13 +155,58 @@ function TaskListItem({
           </Typography>
         )}
         <Box className={classes.detailsFooter}>
-          <Typography variant="overline">
-            author: {author} — priority: {priority}
-          </Typography>
           {currentlyEditing ? (
-            <Button variant="text" color="primary" onClick={handleSubmitEdit}>
-              SUBMIT
-            </Button>
+            <FormControl component="fieldset">
+              <RadioGroup
+                aria-label="priorities"
+                name="prioritiesGroup"
+                value={newPriority}
+                onChange={handlePriorityChange}>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center">
+                  <FormControlLabel
+                    value="low"
+                    control={<Radio />}
+                    label="Low"
+                  />
+                  <FormControlLabel
+                    value="high"
+                    control={<Radio />}
+                    label="High"
+                  />
+                  <FormControlLabel
+                    value="urgent"
+                    control={<Radio />}
+                    label="Urgent"
+                  />
+                </Grid>
+              </RadioGroup>
+            </FormControl>
+          ) : (
+            <Typography variant="overline">
+              author: {author} — priority: {priority}
+            </Typography>
+          )}
+
+          {currentlyEditing ? (
+            <ButtonGroup
+              className={classes.buttonGroup}
+              variant="text"
+              color="primary"
+              aria-label="text primary button group">
+              <Button
+                variant="text"
+                color="primary"
+                onClick={handleSubmitCancel}>
+                CANCEL
+              </Button>
+              <Button variant="text" color="primary" onClick={handleSubmitEdit}>
+                SUBMIT
+              </Button>
+            </ButtonGroup>
           ) : (
             <ButtonGroup
               className={classes.buttonGroup}
@@ -159,7 +214,7 @@ function TaskListItem({
               color="primary"
               aria-label="text primary button group">
               <Button onClick={handleFinish}>
-                {completed ? 'UNDO' : 'MARK COMPLETE'}
+                {completed ? 'NOT DONE?' : 'MARK DONE'}
               </Button>
               <Button onClick={handleEdit}>EDIT</Button>
               <Button onClick={handleDelete}>DELETE</Button>
